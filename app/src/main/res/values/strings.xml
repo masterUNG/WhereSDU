@@ -3,4 +3,5 @@
     <string name="user">ผู้ใช้งาน :</string>
     <string name="pass">รหัสผ่าน :</string>
     <string name="name">ชื่อ :</string>
+    <string name="new_register">New Register</string>
 </resources>
