@@ -82,7 +82,7 @@ public class RegisterFragment extends Fragment {
                         || passwordString.length() == 0) {
                     //Have Space
                     MyAlert myAlert = new MyAlert(getActivity());
-                    myAlert.myDialog("Have Space", "Please Fill All Every Blank");
+                    myAlert.myDialog(getString(R.string.title_have), getString(R.string.message_have));
 
                 } else {
                     //No Space
