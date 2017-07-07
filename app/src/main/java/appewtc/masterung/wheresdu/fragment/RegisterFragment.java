@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import appewtc.masterung.wheresdu.R;
 
@@ -32,5 +33,23 @@ public class RegisterFragment extends Fragment{
         View view = inflater.inflate(R.layout.register_fragment_layout, container, false);
 
         return view;
+    }   // onCreateView
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        //Back Controller
+        ImageView imageView = (ImageView) getView().findViewById(R.id.imvBack);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragmentContent, MainFragment.mainInstance())
+                        .commit();
+            }
+        });
+
     }
 }   // Main Class
