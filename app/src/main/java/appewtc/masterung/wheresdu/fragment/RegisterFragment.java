@@ -3,6 +3,7 @@ package appewtc.masterung.wheresdu.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import appewtc.masterung.wheresdu.MyAlert;
+import appewtc.masterung.wheresdu.MyConstant;
+import appewtc.masterung.wheresdu.PostNewUser;
 import appewtc.masterung.wheresdu.R;
 
 /**
@@ -94,6 +97,34 @@ public class RegisterFragment extends Fragment {
     }   // newRegister
 
     private void uploadValueToServer() {
+
+        String tag = "7JulyV1";
+        MyConstant myConstant = new MyConstant();
+        String urlPHP = myConstant.getUrlAddUser();
+
+        try {
+
+            PostNewUser postNewUser = new PostNewUser(getActivity());
+            postNewUser.execute(nameString, userString, passwordString, urlPHP);
+            String result = postNewUser.get();
+            Log.d(tag, "result ==> " + result);
+
+            if (Boolean.parseBoolean(result)) {
+
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragmentContent, MainFragment.mainInstance())
+                        .commit();
+
+            } else {
+
+                MyAlert myAlert = new MyAlert(getActivity());
+                myAlert.myDialog("Error", "Cannot Upload Please Try Again");
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
